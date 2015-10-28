@@ -30,15 +30,15 @@ using namespace std;
 
 vector<Gota> gotas;
 
-Cubeta cubeta(20);
-
-static int shoulder = 0, elbow = 0, hand = 0, finger = 0;
+Cubeta cubeta(15);
 
 
 bool pausa = true;
 
 int atrapados = 0;
 int no_atrapados = 0;
+
+int arrows[4] = {0};
 
 void init(void)
 {
@@ -119,9 +119,6 @@ void display(void)
         
     }
     
-    
-    
-    
     glutSwapBuffers();
 }
 
@@ -140,6 +137,16 @@ void reshape (int w, int h)
 }
 
 
+void arrowsdn (int k, int x, int y){
+    arrows[k-100] = 1;
+}
+
+void arrowsup(int k, int x, int y){
+    arrows[k-100] = 0;
+}
+
+
+/*
 void arrows (int key, int x, int y){
     
     if(!pausa){
@@ -173,7 +180,7 @@ void arrows (int key, int x, int y){
         }
     }
     
-}
+}*/
 
 
 void keyboard (unsigned char key, int x, int y)
@@ -191,6 +198,26 @@ void keyboard (unsigned char key, int x, int y)
 
 void timerdrop(int param){
     if(!pausa){
+        
+        
+        if(arrows[0])
+            cubeta.mover('l');
+        glutPostRedisplay();
+        
+        if(arrows[1])
+            cubeta.mover('d');
+        glutPostRedisplay();
+        
+        
+        if(arrows[2])
+            cubeta.mover('r');
+        glutPostRedisplay();
+        
+        if(arrows[3])
+            cubeta.mover('u');
+        glutPostRedisplay();
+        
+    
         vector<int> toDelete;
     
         for(int i = 0; i < gotas.size();i++){
@@ -221,18 +248,6 @@ void timerdrop(int param){
             toDelete.pop_back();
         }
     
-    /*
-    for(int i = 0; i < gotas.size();i++){
-        if(!gotas[i].caer()){
-            toDelete.push_back(i);
-        }
-    }
-    
-    while (!toDelete.empty()) {
-        gotas.erase(gotas.begin()+toDelete.back());
-        toDelete.pop_back();
-    }*/
-    
         cout << atrapados << " " << no_atrapados << endl;
     
     }
@@ -258,11 +273,12 @@ int main(int argc, char** argv)
     glutInitWindowSize (600, 600);
     glutInitWindowPosition (100, 100);
     glutCreateWindow (argv[0]);
-    init ();
+    init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
-    glutSpecialFunc(arrows);
+    glutSpecialFunc(arrowsdn);
+    glutSpecialUpFunc(arrowsup);
     glutTimerFunc(20, timerdrop, 1);
     glutTimerFunc(3000, timergenerar, 1);
     glutMainLoop();
