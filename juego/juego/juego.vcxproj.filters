@@ -13,10 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="GLUT">
+      <UniqueIdentifier>{09015d27-07af-4613-8929-63cca13bd5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLUT\bin">
+      <UniqueIdentifier>{2f52ff9e-2134-4426-9a9d-6e65ce43d828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLUT\include">
+      <UniqueIdentifier>{4a36a138-2943-4843-91f9-04f9ed044288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLUT\lib">
+      <UniqueIdentifier>{9f4e43ff-ff2e-468d-9ffa-c43d029c5137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLUT\include\GL">
+      <UniqueIdentifier>{2d4ab93d-49e2-4dd7-b078-6fa732025716}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GLUT\bin\glut32.dll">
+      <Filter>GLUT\bin</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GLUT\include\GL\glut.h">
+      <Filter>GLUT\include\GL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="GLUT\lib\glut32.lib">
+      <Filter>GLUT\lib</Filter>
+    </Library>
   </ItemGroup>
 </Project>
