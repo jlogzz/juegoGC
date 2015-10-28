@@ -29,6 +29,8 @@
 		0EBDC1111BE1128500BEAB3A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0EBDC1181BE112C500BEAB3A /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		0EBDC11A1BE112D900BEAB3A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		0EBDC11C1BE11E4A00BEAB3A /* clases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clases.h; sourceTree = "<group>"; };
+		0EBDC11D1BE121BA00BEAB3A /* vars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vars.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				0EBDC1111BE1128500BEAB3A /* main.cpp */,
+				0EBDC11C1BE11E4A00BEAB3A /* clases.h */,
+				0EBDC11D1BE121BA00BEAB3A /* vars.h */,
 			);
 			path = juegoGCosx;
 			sourceTree = "<group>";
