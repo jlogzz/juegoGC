@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0EBDC1121BE1128500BEAB3A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0EBDC1111BE1128500BEAB3A /* main.cpp */; };
+		0EBDC1191BE112C500BEAB3A /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBDC1181BE112C500BEAB3A /* GLUT.framework */; };
+		0EBDC11B1BE112D900BEAB3A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EBDC11A1BE112D900BEAB3A /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		0EBDC10E1BE1128500BEAB3A /* juegoGCosx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = juegoGCosx; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBDC1111BE1128500BEAB3A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0EBDC1181BE112C500BEAB3A /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		0EBDC11A1BE112D900BEAB3A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EBDC11B1BE112D900BEAB3A /* OpenGL.framework in Frameworks */,
+				0EBDC1191BE112C500BEAB3A /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,8 @@
 		0EBDC1051BE1128500BEAB3A = {
 			isa = PBXGroup;
 			children = (
+				0EBDC11A1BE112D900BEAB3A /* OpenGL.framework */,
+				0EBDC1181BE112C500BEAB3A /* GLUT.framework */,
 				0EBDC1101BE1128500BEAB3A /* juegoGCosx */,
 				0EBDC10F1BE1128500BEAB3A /* Products */,
 			);
