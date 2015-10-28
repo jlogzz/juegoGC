@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  juegoGCosx
+//  juegoGC
 //
-//  baumann 10/28/15.
+//  baumann jlo 10/28/15
 //
 
 
