@@ -2,11 +2,17 @@
 // Juan Lorenzo Gonzalez A01190381
 // Alexander Baumann A00814393
 //
-#include <windows.h>
+//  main.cpp
+//  juegoGC
+//
+//  baumann jlo 10/28/15
+//
+
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
+#include <windows.h>
 #include <GL/GL.h>
 #include <gl/glut.h>
 #endif
@@ -27,8 +33,6 @@ int ancho = 800;
 int opcion = 0;
 int pDealer = 0;
 int pPlayer = 0;
-bool playing = FALSE;
-bool canHit = FALSE;
 char* resultado1 = "";
 char* resultado2 = "";
 
@@ -39,6 +43,8 @@ int angulo = 10;
 int anguloTetera = 0;
 int opt = 0;
 int tetera = 0;
+
+static int shoulder = 0, elbow = 0, hand = 0, finger = 0;
 
 void myTimer(int opcion) {
 	if (opt) {
@@ -130,7 +136,62 @@ void display() {
 
 	}
 	else if (viewDisplay == 2) { //juego
+		glLineWidth(3);
 
+		glPushMatrix();
+		glTranslatef(-1.0, 0.0, 0.0);
+		glRotatef((GLfloat)shoulder, 0.0, 0.0, 1.0);
+		glTranslatef(1.0, 0.0, 0.0);
+
+		glPushMatrix();
+		glScalef(2.0, 0.4, 1.0);
+		glColor3f(2, 0.4, 1);
+		glutSolidCube(1.0);
+		glColor3f(1, 1, 1);
+		glutWireCube(1.0);
+		glPopMatrix();
+
+		glTranslatef(1.0, 0.0, 0.0);
+		glRotatef((GLfloat)elbow, 0.0, 0.0, 1.0);
+		glTranslatef(1.0, 0.0, 0.0);
+
+		glPushMatrix();
+		glScalef(2.0, 0.4, 1.0);
+		glColor3f(0, 0, 1);
+		glutWireCube(1.0);
+
+		glPopMatrix();
+
+
+		glTranslatef(1, 0.0, 0.0);
+		glRotatef((GLfloat)hand, 0.0, 0.0, 1.0);
+		glTranslatef(0.25, 0.0, 0.0);
+
+		glPushMatrix();
+		glScalef(0.5, 0.5, 0.5);
+		glColor3f(1, 1, 1);
+		glutSolidCube(1.0);
+		glColor3f(1, 0, 1);
+		glutWireCube(1.0);
+
+		glPopMatrix();
+
+		glTranslatef(0.25, 0.0, 0.0);
+		glRotatef((GLfloat)finger, 1, 0.0, 0);
+		glTranslatef(0.25, 0.0, 0.0);
+
+		glPushMatrix();
+		glScalef(0.25, 0.25, 1);
+		glColor3f(1, 0, 0);
+		glutSolidCube(1.0);
+		glColor3f(1, 1, 1);
+		glutWireCube(1.0);
+
+		glPopMatrix();
+
+		glPopMatrix();
+
+		glPopMatrix();
 	}
 	else if (viewDisplay == 3) { //pausa
 
@@ -142,58 +203,16 @@ void display() {
 
 	}
 	else {
-		//Teteras
-		if (tetera > 0) {
-			glPushMatrix();
-			if (tetera == 1) {
-				glTranslatef(150, 250, 0);
-				glScalef(100, 70, 0.5);
-				glRotatef((GLfloat)angulo, 0, 1, 0);
-				glColor3f(1, 0, 0);
-			}
-			else if (tetera == 2) {
-				glTranslatef(650, 250, 0);
-				glScalef(100, 70, 0.5);
-				glRotatef((GLfloat)angulo, 0, 1, 0);
-				glColor3f(0, 1, 0);
-			}
 
-			glutSolidTeapot(1);
-			glColor3f(1, 1, 1);
-			glutWireTeapot(1);
-
-			glPopMatrix();
-		}
-
-		char scoreDealer[200] = "";
-		sprintf(scoreDealer, "Score Dealer: %d", pDealer);
-
-		char scorePlayer[200] = "";
-		sprintf(scorePlayer, "Score Player: %d", pPlayer);
-
-		glColor3ub(0, 0, 0);
-		output(50, 550, "BlackJack", 50);
-		output(50, 500, "Dealer", 50);
-		output(50, 350, "Player", 50);
-		output(50, 170, "Autor: Juan Gonzalez, Matricula: 1190381", 30);
-		output(50, 140, "Autor: Alexander Baumann, Matricula: 814393", 30);
-		output(50, 100, "D-Deal, H-Hit, S-Stand, Esc-Salir", 40);
-		glColor3f(0, 0, 0);
-		output(100, 220, resultado1, 40);
-		output(500, 220, resultado2, 40);
-		glColor3f(0, 0, 0);
-
-		output(50, 50, scoreDealer, 40);
-		output(380, 50, scorePlayer, 40);
 	}
-	
+
 	glutSwapBuffers();
 
 }
 
 void init(void)
 {
-	glClearColor(1.0, 0.5, 0.33, 1.0);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_SMOOTH);
 }
 
@@ -232,29 +251,50 @@ void creacionMenu(void) {
 
 void myKeyboard(unsigned char theKey, int x, int y)
 {
-	cout << theKey << endl;
+	//cout << theKey << endl;
 	switch (theKey)
 	{
-	case 'd':
-	case 'D':
-		opcion = 1;
+	case 's':   /*  s key rotates at shoulder  */
+		shoulder = (shoulder + 5) % 360;
 		glutPostRedisplay();
 		break;
-	case 'h':
-	case 'H':
-		opcion = 2;
-		glutPostRedisplay();
-		break;
-	case 's':
 	case 'S':
-		opcion = 3;
+		shoulder = (shoulder - 5) % 360;
 		glutPostRedisplay();
-		//glutTimerFunc(1, myTimer, 3);
+		break;
+	case 'e':  /*  e key rotates at elbow  */
+		elbow = (elbow + 5) % 360;
+		glutPostRedisplay();
+		break;
+	case 'E':
+		elbow = (elbow - 5) % 360;
+		glutPostRedisplay();
+		break;
+
+	case 'd':  /*  e key rotates at elbow  */
+		hand = (hand + 5) % 360;
+		glutPostRedisplay();
+		break;
+	case 'D':
+		hand = (hand - 5) % 360;
+		glutPostRedisplay();
+
+
+	case 'w':  /*  e key rotates at elbow  */
+		finger = (finger + 5) % 360;
+		glutPostRedisplay();
+		break;
+	case 'W':
+		finger = (finger - 5) % 360;
+		glutPostRedisplay();
 		break;
 	case 13:
 		if (menuOpcion == 3 && viewDisplay == 0) {
 			exit(-1);
 			//terminate the program
+		}
+		else if (menuOpcion == 0 && viewDisplay == 0) {
+			viewDisplay = 2;
 		}
 	default:
 		break;		      // do nothing
@@ -287,7 +327,8 @@ void reshape(int w, int h) {
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1, 20);
+	gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1.0, 20.0);
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
@@ -303,7 +344,7 @@ int main(int argc, char *argv[])
 	glutInitWindowSize(ancho, alto);
 	glutInitWindowPosition(10, 10);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-	int mainWindow = glutCreateWindow("BlackJack!");
+	int mainWindow = glutCreateWindow("Mugre Suciedad");
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
@@ -314,8 +355,5 @@ int main(int argc, char *argv[])
 	creacionMenu();
 
 	glutMainLoop();
-
-	cout << "BlackJack" << endl;
 	return EXIT_SUCCESS;
 }
-
