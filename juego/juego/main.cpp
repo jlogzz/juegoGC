@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Juan Lorenzo Gonzalez A01190381
 // Alexander Baumann A00814393
@@ -282,3 +283,5 @@ int main(int argc, char *argv[])
 	glutMainLoop();
 	return EXIT_SUCCESS;
 }
+=======
+>>>>>>> 025a38c3dd571cc2b31b8ba7fcc4d307100bb53a
