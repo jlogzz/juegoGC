@@ -78,6 +78,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,15 +121,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SOIL\SOIL.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GLUT\bin\glut32.dll" />
+    <None Include="SOIL\SOIL.idb" />
+    <None Include="SOIL\SOIL.pdb" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLUT\include\GL\glut.h" />
+    <ClInclude Include="SOIL\SOIL.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="GLUT\lib\glut32.lib" />
+    <Library Include="SOIL\SOIL.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\soil\projects\VC9\SOIL.vcxproj">
+      <Project>{c32fb2b4-500c-43cd-a099-eecce079d3f1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="SOIL\SOIL.log" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\menu.png" />
+    <Image Include="img\tile_A.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

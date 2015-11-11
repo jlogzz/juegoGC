@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Juan Lorenzo Gonzalez A01190381
 // Alexander Baumann A00814393
@@ -14,7 +13,6 @@
 #include <GLUT/glut.h>
 #else
 #include <windows.h>
-#include <GL/GL.h>
 #include <gl/glut.h>
 #endif
 
@@ -24,6 +22,7 @@
 #include <string>
 #include <iostream>
 #include <time.h> 
+#include "SOIL/SOIL.h"
 
 using namespace std;
 
@@ -45,6 +44,24 @@ int anguloTetera = 0;
 int opt = 0;
 int tetera = 0;
 
+static GLuint texName[10];
+
+GLfloat vertices[] =
+{ -0.5f, 0.0f, 0.5f,   0.5f, 0.0f, 0.5f,   0.5f, 1.0f, 0.5f,  -0.5f, 1.0f, 0.5f,
+-0.5f, 1.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 0.0f, -0.5f, -0.5f, 0.0f, -0.5f,
+0.5f, 0.0f, 0.5f,   0.5f, 0.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 1.0f, 0.5f,
+-0.5f, 0.0f, -0.5f,  -0.5f, 0.0f, 0.5f,  -0.5f, 1.0f, 0.5f, -0.5f, 1.0f, -0.5f
+};
+
+GLfloat texcoords[] = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0
+};
+
+GLubyte cubeIndices[24] = { 0,1,2,3, 4,5,6,7, 3,2,5,4, 7,6,1,0,
+8,9,10,11, 12,13,14,15 };
+
 void myTimer(int opcion) {
 	if (opt) {
 		if (angulo < 370) {
@@ -63,7 +80,7 @@ void myTimer(int opcion) {
 void output(GLfloat x, GLfloat y, char* text, int size, int weight = 1)
 {
 	glPushMatrix();
-	glTranslatef(x, y, 0.1f);
+	glTranslatef(x, y, 0.5f);
 	int fontsize = size;
 	glLineWidth(weight);
 	glScalef(fontsize / 152.38, fontsize / 152.38, fontsize / 152.38);
@@ -74,12 +91,44 @@ void output(GLfloat x, GLfloat y, char* text, int size, int weight = 1)
 	glPopMatrix();
 }
 
+void loadTexture(int width, int height, unsigned char* image, int k)
+{
+
+	glBindTexture(GL_TEXTURE_2D, texName[k]); //Tell OpenGL which texture to edit
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	//Map the image to the texture
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+		GL_UNSIGNED_BYTE, image);
+
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	if (viewDisplay == 0) { //menu
-		glColor3ub(0, 0, 0);
-		output(-300, 200, "MUGRE SUCIEDAD", 80, 8);
+		glEnable(GL_TEXTURE_2D);
+			glPushMatrix();
+				glBindTexture(GL_TEXTURE_2D, texName[1]);
+
+				glTranslatef(0, 0, 0.1);
+				glScalef(600, 300, 0);
+				glRotatef(0, 0, 0, 1);
+				glColor3f(1, 1, 1);
+				glBegin(GL_QUADS);
+					float scale = 1.0f;
+					glTexCoord2f(0.0f, scale); glVertex3f(-1.0f, -1.0f, 1.0f);  // Bottom Left Of The Texture and Quad
+					glTexCoord2f(scale, scale); glVertex3f(1.0f, -1.0f, 1.0f);  // Bottom Right Of The Texture and Quad
+					glTexCoord2f(scale, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);  // Top Right Of The Texture and Quad
+					glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);  // Top Left Of The Texture and Quad
+				glEnd();
+			glPopMatrix();
+		glDisable(GL_TEXTURE_2D);
 
 		if (menuOpcion == 0) {
 			glColor3ub(255, 255, 255);
@@ -87,7 +136,7 @@ void display() {
 		else {
 			glColor3ub(0, 0, 0);
 		}
-		output(-220, 50, "NUEVO JUEGO", 50, 4);
+		output(-100, -100, "NUEVO JUEGO", 35, 2);
 
 		if (menuOpcion == 1) {
 			glColor3ub(255, 255, 255);
@@ -95,7 +144,7 @@ void display() {
 		else {
 			glColor3ub(0, 0, 0);
 		}
-		output(-220, -20, "INSTRUCIONES", 50, 4);
+		output(-100, -140, "INSTRUCIONES", 35, 2);
 
 		if (menuOpcion == 2) {
 			glColor3ub(255, 255, 255);
@@ -103,7 +152,7 @@ void display() {
 		else {
 			glColor3ub(0, 0, 0);
 		}
-		output(-220, -90, "CREDITOS", 50, 4);
+		output(-100, -180, "CREDITOS", 35, 2);
 
 		if (menuOpcion == 3) {
 			glColor3ub(255, 255, 255);
@@ -111,7 +160,7 @@ void display() {
 		else {
 			glColor3ub(0, 0, 0);
 		}
-		output(-220, -160, "SALIR", 50, 4);
+		output(-100, -220, "SALIR", 35, 2);
 	}
 	else if (viewDisplay == 1) { //ayuda
 		glColor3ub(0, 0, 0);
@@ -124,7 +173,7 @@ void display() {
 		output(-400, -250, "Presiona ESC para regresar", 40, 4);
 	}
 	else if (viewDisplay == 2) { //juego
-		
+	
 	}
 	else if (viewDisplay == 3) { //pausa
 		glColor3ub(0, 0, 0);
@@ -158,6 +207,17 @@ void init(void)
 	glClearColor(139/255.0, 69 / 255.0, 19 / 255.0, 0.0);
 	glShadeModel(GL_FLAT);
 	glEnable(GL_DEPTH_TEST);
+
+	// glEnable(GL_COLOR_MATERIAL);
+	glGenTextures(10, texName); //Make room for our texture
+
+	int width, height, i = 0;
+	unsigned char* image;
+	 image = SOIL_load_image("img/tile_A.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
+
+	image = SOIL_load_image("img/menu.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
 }
 
 void onMenu(int op) {
@@ -283,5 +343,3 @@ int main(int argc, char *argv[])
 	glutMainLoop();
 	return EXIT_SUCCESS;
 }
-=======
->>>>>>> 025a38c3dd571cc2b31b8ba7fcc4d307100bb53a

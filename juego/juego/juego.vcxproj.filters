@@ -28,25 +28,59 @@
     <Filter Include="GLUT\include\GL">
       <UniqueIdentifier>{2d4ab93d-49e2-4dd7-b078-6fa732025716}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SOIL">
+      <UniqueIdentifier>{db03f990-13fb-4656-856f-99ff3272295d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="img">
+      <UniqueIdentifier>{e835a127-642e-43f0-b4fb-d92ebf2d3457}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SOIL\SOIL.c">
+      <Filter>SOIL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GLUT\bin\glut32.dll">
       <Filter>GLUT\bin</Filter>
     </None>
+    <None Include="SOIL\SOIL.idb">
+      <Filter>SOIL</Filter>
+    </None>
+    <None Include="SOIL\SOIL.pdb">
+      <Filter>SOIL</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLUT\include\GL\glut.h">
       <Filter>GLUT\include\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="SOIL\SOIL.h">
+      <Filter>SOIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="GLUT\lib\glut32.lib">
       <Filter>GLUT\lib</Filter>
     </Library>
+    <Library Include="SOIL\SOIL.lib">
+      <Filter>SOIL</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="SOIL\SOIL.log">
+      <Filter>SOIL</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\tile_A.png">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\menu.png">
+      <Filter>img</Filter>
+    </Image>
   </ItemGroup>
 </Project>
