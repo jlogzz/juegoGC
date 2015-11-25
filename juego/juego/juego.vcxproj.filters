@@ -61,6 +61,12 @@
     <ClInclude Include="SOIL\SOIL.h">
       <Filter>SOIL</Filter>
     </ClInclude>
+    <ClInclude Include="clases.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vars.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="GLUT\lib\glut32.lib">
@@ -80,6 +86,9 @@
       <Filter>img</Filter>
     </Image>
     <Image Include="img\menu.png">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\bsq.png">
       <Filter>img</Filter>
     </Image>
   </ItemGroup>

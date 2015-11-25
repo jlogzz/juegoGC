@@ -129,8 +129,10 @@
     <None Include="SOIL\SOIL.pdb" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clases.h" />
     <ClInclude Include="GLUT\include\GL\glut.h" />
     <ClInclude Include="SOIL\SOIL.h" />
+    <ClInclude Include="vars.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="GLUT\lib\glut32.lib" />
@@ -145,6 +147,7 @@
     <Text Include="SOIL\SOIL.log" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="img\bsq.png" />
     <Image Include="img\menu.png" />
     <Image Include="img\tile_A.png" />
   </ItemGroup>
