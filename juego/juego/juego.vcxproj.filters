@@ -34,6 +34,9 @@
     <Filter Include="img">
       <UniqueIdentifier>{e835a127-642e-43f0-b4fb-d92ebf2d3457}</UniqueIdentifier>
     </Filter>
+    <Filter Include="audio">
+      <UniqueIdentifier>{36fc9266-9fce-47ee-8301-d64613eb8d41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,5 +94,25 @@
     <Image Include="img\bsq.png">
       <Filter>img</Filter>
     </Image>
+    <Image Include="img\p3.png">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\p4.png">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\p1.png">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\p2.png">
+      <Filter>img</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="audio\bg.wav">
+      <Filter>audio</Filter>
+    </Media>
+    <Media Include="audio\boop2.wav">
+      <Filter>audio</Filter>
+    </Media>
   </ItemGroup>
 </Project>

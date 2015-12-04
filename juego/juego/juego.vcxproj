@@ -98,6 +98,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -149,7 +150,15 @@
   <ItemGroup>
     <Image Include="img\bsq.png" />
     <Image Include="img\menu.png" />
+    <Image Include="img\p1.png" />
+    <Image Include="img\p2.png" />
+    <Image Include="img\p3.png" />
+    <Image Include="img\p4.png" />
     <Image Include="img\tile_A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="audio\bg.wav" />
+    <Media Include="audio\boop2.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

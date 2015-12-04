@@ -13,6 +13,7 @@
 #include <GLUT/glut.h>
 #else
 #include <windows.h>
+#include <mmsystem.h>
 #include <gl/glut.h>
 #endif
 
@@ -55,6 +56,7 @@ int viewDisplay = 0;
 int menuOpcion = 0;
 
 int opt = 0;
+int random = 0;
 
 static GLuint texName[10];
 
@@ -73,14 +75,6 @@ GLfloat texcoords[] = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
 
 GLubyte cubeIndices[24] = { 0,1,2,3, 4,5,6,7, 3,2,5,4, 7,6,1,0,
 8,9,10,11, 12,13,14,15 };
-
-void myTimer(int opcion) {
-	if (opt) {
-		
-	}
-	glutPostRedisplay();
-	glutTimerFunc(5, myTimer, opt);
-}
 
 void output(GLfloat x, GLfloat y, char* text, int size, int weight = 1)
 {
@@ -323,9 +317,17 @@ void display() {
 			char puntaje[200] = "";
 			sprintf(puntaje, "PUNTAJE:%d", score);
 			output(-170, 0, puntaje, 50, 2);
-			output(-540, -160, "Recuerda que el bano diario es muy importante.", 50, 2);
 
-			output(-570, -450, "Presiona ESC para salir o ENTER para volver a jugar", 50, 4);
+			char frases[5][100] = { "" };
+			sprintf(frases[0], "Recuerda lavarte los dientes despues de comer.");
+			sprintf(frases[1], "Siempre debes lavarte las manos antes de comer.");
+			sprintf(frases[2], "Recuerda ba~arte todos los dias.");
+			sprintf(frases[3], "Debes lavarte los dientes al menos 3 veces al dia.");
+			sprintf(frases[4], "Las personas limpias son personas mas felices.");
+			
+			output(-540, -160, frases[random], 50, 2);
+
+			output(-570, -450, "Presiona ESC para salir o ENTER para volver a jugar", 40, 4);
 		}
 	}
 	else if (viewDisplay == 3) { //pausa
@@ -374,6 +376,15 @@ void init(void)
 
 	image = SOIL_load_image("img/th.png", &width, &height, 0, SOIL_LOAD_RGB);
 	loadTexture(width, height, image, i++);
+
+	image = SOIL_load_image("img/p1.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
+	image = SOIL_load_image("img/p2.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
+	image = SOIL_load_image("img/p3.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
+	image = SOIL_load_image("img/p4.png", &width, &height, 0, SOIL_LOAD_RGB);
+	loadTexture(width, height, image, i++);
 }
 
 void arrowsdn(int k, int x, int y) {
@@ -382,39 +393,6 @@ void arrowsdn(int k, int x, int y) {
 
 void arrowsup(int k, int x, int y) {
 	arrows[k - 100] = 0;
-}
-
-void onMenu(int op) {
-	switch (op) {
-	case 1:
-		opcion = 1;
-		glutPostRedisplay();
-		break;
-	case 2:
-		opcion = 2;
-		glutPostRedisplay();
-		//glutTimerFunc(1, myTimer, 3);
-		break;
-	case 3:
-		opcion = 3;
-		glutPostRedisplay();
-		break;
-	case 4:
-		exit(-1);
-		break;
-	}
-	glutPostRedisplay();
-}
-
-void creacionMenu(void) {
-	int menuPrincipal;
-
-	glutCreateMenu(onMenu);
-	glutAddMenuEntry("Deal", 1);
-	glutAddMenuEntry("Hit", 2);
-	glutAddMenuEntry("Stand	", 3);
-	glutAddMenuEntry("Salir", 4);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
 void myKeyboard(unsigned char theKey, int x, int y)
@@ -499,6 +477,9 @@ void timerdrop(int param) {
 				int dify = abs(gotas[i].getY() - cubeta.getY());
 
 				if (difx < 50 && dify < 50 && gotas[i].getZ()<50) {
+					PlaySound((LPCSTR)"watergun.WAV", NULL, SND_FILENAME | SND_ASYNC);
+
+					//PlaySound((LPCSTR)"bg.WAV", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
 					toDelete.push_back(i);
 					atrapados++;
@@ -523,6 +504,7 @@ void timerdrop(int param) {
 				no_atrapados++;
 				if (multiply > 0) {
 					multiply--;
+					random = 0 + (std::rand() % (int)(4 - 0 + 1));
 				}
 			}
 
@@ -532,8 +514,6 @@ void timerdrop(int param) {
 			gotas.erase(gotas.begin() + toDelete.back());
 			toDelete.pop_back();
 		}
-
-		cout << atrapados << " " << no_atrapados << endl;
 
 	}
 	glutPostRedisplay();
@@ -609,6 +589,7 @@ int main(int argc, char *argv[])
 	glutInitWindowPosition(10, 10);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	int mainWindow = glutCreateWindow("Mugre Suciedad");
+	PlaySound((LPCSTR)"bg.WAV", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NOSTOP);
 	init();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
@@ -617,8 +598,6 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(myKeyboard);
 	glutSpecialFunc(mySpecialKeyboard);
 	glutSpecialUpFunc(arrowsup);
-	//glutMouseFunc(myMouse);
-	creacionMenu();
 
 	glutMainLoop();
 	return EXIT_SUCCESS;
