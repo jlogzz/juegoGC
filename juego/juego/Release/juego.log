@@ -1,11 +1,15 @@
-﻿Build started 04/12/2015 2:48:53 AM.
-     1>Project "C:\Users\juan_\itesm\juegoGC\juego\juego\juego.vcxproj" on node 2 (Build target(s)).
+﻿Build started 04/12/2015 11:12:08 AM.
+     1>Project "C:\Users\juan_\itesm\juegoGC\juego\juego\juego.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
      1>main.cpp(241): warning C4018: '<': signed/unsigned mismatch
      1>main.cpp(299): warning C4018: '<': signed/unsigned mismatch
      1>main.cpp(473): warning C4018: '<': signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt SOIL\SOIL.c
+         SOIL.c
+     1>SOIL\SOIL.c(1708): warning C4018: '<=': signed/unsigned mismatch
+     1>SOIL\SOIL.c(1718): warning C4018: '<': signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\juan_\itesm\juegoGC\juego\Release\juego.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\juan_\itesm\juegoGC\juego\Release\juego.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\juan_\itesm\juegoGC\juego\Release\juego.lib" /MACHINE:X86 /SAFESEH Release\main.obj
          Release\SOIL.obj
@@ -15,13 +19,11 @@
      1>SOIL.lib(image_helper.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
      1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
-         3 of 208 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
-           0 functions were new in current compilation
-           0 functions had inline decision re-evaluated but remain unchanged
+         All 208 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
          Finished generating code
          juego.vcxproj -> C:\Users\juan_\itesm\juegoGC\juego\Release\juego.exe
-     1>Done Building Project "C:\Users\juan_\itesm\juegoGC\juego\juego\juego.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\juan_\itesm\juegoGC\juego\juego\juego.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.17
+Time Elapsed 00:00:02.06
